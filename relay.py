@@ -31,7 +31,7 @@ async def call_relay(request):
         auth = HTTPBasicAuth(login, password)
         url = "http://10.2.4.123/productionCRM/hs/telegram/api/v1/post/request"
 
-        params = str(user) + str(text)
+        params = str(user) + '#' + str(text)
         r = requests.post(url, json=json.dumps(params), auth=auth)
         print(r.text)
 
