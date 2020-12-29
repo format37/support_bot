@@ -57,7 +57,7 @@ def default_bot_init(webhook_host, webhook_port, webhook_ssl_cert, script_path):
     bot.remove_webhook()
 
     # Set webhook
-    print(webhook_url_path)
+    print(webhook_url_base + webhook_url_path)
     wh_res = bot.set_webhook(url=webhook_url_base + webhook_url_path, certificate=open(webhook_ssl_cert, 'r'))
     print('webhook set', wh_res)
     print(webhook_url_base + webhook_url_path)
