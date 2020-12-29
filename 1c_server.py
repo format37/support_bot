@@ -69,9 +69,11 @@ ice_bot = default_bot_init(WEBHOOK_HOST, WEBHOOK_PORT, WEBHOOK_SSL_CERT, bot_scr
 bots.append(ice_bot)
 
 
-@ice_bot.message_handler(commands=['test'])
+@ice_bot.message_handler()
 def ice_bot_test(message):
-    ice_bot.reply_to(message, str(message.from_user.id))
+    answer = str(message.text)
+    # answer = str(message.from_user.id)
+    ice_bot.reply_to(message, answer)
 # === === === ice --
 
 
