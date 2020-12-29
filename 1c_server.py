@@ -16,11 +16,9 @@ import requests
 import urllib.parse
 from urllib.parse import urlparse
 
-#SCRIPT_PATH	= '/home/format37_gmail_com/projects/telegram_bot_server/'
 SCRIPT_PATH	= '/home/dvasilev/projects/support_bot/'
-SSL_PATH = '/etc/letsencrypt/live/service.icecorp.ru/'
+SSL_PATH = '/etc/letsencrypt/live/service.icecorp.ru/' # execute as root
 
-#WEBHOOK_HOST = 'www.scriptlab.net'
 WEBHOOK_HOST = 'service.icecorp.ru'
 WEBHOOK_PORT = 8443  # 443, 80, 88 or 8443 (port need to be 'open')
 WEBHOOK_LISTEN = '0.0.0.0'  # In some VPS you may need to put here the IP addr
@@ -67,13 +65,13 @@ def default_bot_init(webhook_host, webhook_port, webhook_ssl_cert, script_path):
 
 # === === === ice ++
 bot_script_path = '/home/dvasilev/projects/support_bot/'
-idbot = default_bot_init(WEBHOOK_HOST, WEBHOOK_PORT, WEBHOOK_SSL_CERT, bot_script_path)
-bots.append(idbot)
+ice_bot = default_bot_init(WEBHOOK_HOST, WEBHOOK_PORT, WEBHOOK_SSL_CERT, bot_script_path)
+bots.append(ice_bot)
 
 
-@idbot.message_handler(commands=['user'])
-def idbot_user(message):
-    idbot.reply_to(message, str(message.from_user.id))
+@ice_bot.message_handler(commands=['test'])
+def ice_bot_test(message):
+    ice_bot.reply_to(message, str(message.from_user.id))
 # === === === ice --
 
 
