@@ -84,6 +84,7 @@ async def handle(request):
             request_body_dict = await request.json()
             update = telebot.types.Update.de_json(request_body_dict)
             bot.process_new_updates([update])
+            print('bot handle')
             return web.Response()
 
     return web.Response(status=403)
