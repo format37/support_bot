@@ -21,7 +21,7 @@ SCRIPT_PATH	= '/home/dvasilev/projects/support_bot/'
 SSL_PATH = '/etc/letsencrypt/live/service.icecorp.ru/'
 
 #WEBHOOK_HOST = 'www.scriptlab.net'
-WEBHOOK_HOST = 'www.service.icecorp.ru'
+WEBHOOK_HOST = 'service.icecorp.ru'
 WEBHOOK_PORT = 8443  # 443, 80, 88 or 8443 (port need to be 'open')
 WEBHOOK_LISTEN = '0.0.0.0'  # In some VPS you may need to put here the IP addr
 
