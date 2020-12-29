@@ -21,8 +21,8 @@ SSL_PATH = '/etc/letsencrypt/live/service.icecorp.ru/' # execute as root
 
 WEBHOOK_HOST = 'service.icecorp.ru'
 WEBHOOK_PORT = 8443  # 443, 80, 88 or 8443 (port need to be 'open')
-#WEBHOOK_LISTEN = '0.0.0.0'  # In some VPS you may need to put here the IP addr
-WEBHOOK_LISTEN = '95.165.209.182'
+WEBHOOK_LISTEN = '0.0.0.0'  # In some VPS you may need to put here the IP addr
+#WEBHOOK_LISTEN = '95.165.209.182'
 
 WEBHOOK_SSL_CERT = SSL_PATH+'fullchain.pem'  # Path to the ssl certificate
 WEBHOOK_SSL_PRIV = SSL_PATH+'privkey.pem'  # Path to the ssl private key
@@ -56,7 +56,6 @@ def default_bot_init(webhook_host, webhook_port, webhook_ssl_cert, script_path):
     bot.remove_webhook()
 
     # Set webhook
-    print(webhook_url_base + webhook_url_path)
     wh_res = bot.set_webhook(url=webhook_url_base + webhook_url_path, certificate=open(webhook_ssl_cert, 'r'))
     print('webhook set', wh_res)
     print(webhook_url_base + webhook_url_path)
@@ -80,13 +79,17 @@ def ice_bot_test(message):
 
 # Process webhook calls
 async def handle(request):
+    print('handle')
     for bot in bots:
+        print('bot')
         if request.match_info.get('token') == bot.token:
+            print('responce')
             request_body_dict = await request.json()
             update = telebot.types.Update.de_json(request_body_dict)
             bot.process_new_updates([update])
-            print('bot handle')
             return web.Response()
+        else:
+            print('r', request.match_info.get('token'))
 
     return web.Response(status=403)
 
