@@ -11,7 +11,7 @@ WEBHOOK_LISTEN = '0.0.0.0'  # In some VPS you may need to put here the IP addr
 
 async def call_relay(request):
     try:
-	script_path = '/home/dvasilev/projects/support_bot/'
+        script_path = '/home/dvasilev/projects/support_bot/'
         user = urllib.parse.quote_plus(request.rel_url.query['user'])
         text = urllib.parse.quote_plus(request.rel_url.query['text'])
         print(user, text)
