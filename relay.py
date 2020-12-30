@@ -9,22 +9,17 @@ WEBHOOK_PORT = 8084
 WEBHOOK_LISTEN = '0.0.0.0'  # In some VPS you may need to put here the IP addr
 
 
-async def call_test(request):
-    print('ok')
-    return web.Response(text='ok', content_type="text/html")
-
-
 async def call_relay(request):
     try:
-
+	script_path = '/home/dvasilev/projects/support_bot/'
         user = urllib.parse.quote_plus(request.rel_url.query['user'])
         text = urllib.parse.quote_plus(request.rel_url.query['text'])
         print(user, text)
 
-        with open('auth.login', 'r') as file:
+        with open(script_path + 'auth.login', 'r') as file:
             login = file.read().replace('\n', '')
             file.close()
-        with open('auth.pass', 'r') as file:
+        with open(script_path + 'auth.pass', 'r') as file:
             password = file.read().replace('\n', '')
             file.close()
 
@@ -43,7 +38,6 @@ async def call_relay(request):
 
 
 app = web.Application()
-app.router.add_route('GET', '/test', call_test)
 app.router.add_route('GET', '/relay', call_relay)
 
 web.run_app(
